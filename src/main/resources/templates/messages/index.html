@@ -7,6 +7,13 @@
     <link rel="stylesheet" th:href="@{/css/style.css}" />
     </head>
     <body>
-      <h1>トップページ</h1>
+      <div class="wrapper">
+        <div class ="side-bar">
+        <div th:insert="~{side_bar :: side_bar}"></div>
+        </div>
+        <div class="chat">
+        <div th:insert="~{main_chat :: main_chat}"></div>
+        </div>
+      </div>
     </body>
 </html>
