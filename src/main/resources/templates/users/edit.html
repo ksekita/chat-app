@@ -14,7 +14,7 @@
       <div class='account-page__inner--left account-page__header'>
         <h2>Edit Account</h2>
         <h5>アカウントの編集</h5>
-        <form th:action="@{/}">
+        <form th:action="@{/logout}" method="post">
           <input type="submit" value="ログアウト" class="btn" />
         </form>
         <a th:href="@{/}" class='btn'>チャットページに戻る</a>
