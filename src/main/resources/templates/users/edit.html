@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ChatApp</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <link rel="stylesheet" th:href="@{/css/user.css}" />
+</head>
+<body>
+
+  <div class='account-page' id='account-page'>
+    <div class='account-page__inner clearfix'>
+      <div class='account-page__inner--left account-page__header'>
+        <h2>Edit Account</h2>
+        <h5>アカウントの編集</h5>
+        <form th:action="@{/logout}" method="post">
+          <input type="submit" value="ログアウト" class="btn" />
+        </form>
+        <a th:href="@{/}" class='btn'>チャットページに戻る</a>
+      </div>
+      <div class='account-page__inner--right user-form'>
+        <form th:action="@{/users/{id}(id=${user.id})}" th:object="${user}" method="post">
+          <div th:if="${errorMessages}" th:each="error : ${errorMessages}">
+            <div th:text="${error}"></div>
+          </div>
+          <input type="hidden" th:field="*{id}"/>
+
+          <div class='field'>
+            <div class='field-label'>
+              <label for="name">Name</label>
+            </div>
+            <div class='field-input'>
+              <input type="text" th:field="*{name}" id="name" autofocus="autofocus"/>
+            </div>
+          </div>
+          <div class='field'>
+            <div class='field-label'>
+              <label for="email">Email</label>
+            </div>
+            <div class='field-input'>
+              <input type="email" th:field="*{email}" id="email"/>
+            </div>
+          </div>
+          <div class='actions'>
+            <input type="submit" value="Update" class='btn'/>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
