@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>ChatApp</title>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css">
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <link rel="stylesheet" th:href="@{/css/room.css}" />
+</head>
+<body>
+
+  <div class='chat-room-form'>
+    <h1>新規チャットルーム</h1>
+    <form th:action="@{/rooms}" th:method="post" th:object="${roomForm}">
+      <div th:if="${errorMessages}" th:each="error : ${errorMessages}">
+        <div th:text="${error}"></div>
+      </div>
+      <div class='chat-room-form__field'>
+        <div class='chat-room-form__field--left'>
+          <label class="chat-room-form__label" for="room_name">チャットルーム名</label>
+        </div>
+        <div class='chat-room-form__field--right'>
+          <input type="text" th:field="*{name}" id="room_name" class="chat__room_name chat-room-form__input" placeholder="チャットルーム名を入力してください">
+        </div>
+      </div>
+      <div class='chat-room-form__field'>
+      </div>
+      <div class='chat-room-form__field'>
+        <div class='chat-room-form__field--left'>
+          <label class='chat-room-form__label' for='chat_room_チャットメンバー'>チャットメンバー</label>
+        </div>
+        <div class='chat-room-form__field--right'>
+        </div>
+      </div>
+      <div class='chat-room-form__field'>
+        <div class='chat-room-form__field--left'></div>
+        <div class='chat-room-form__field--right'>
+          <input type="submit" value="Create Room" class="chat-room-form__action-btn" data-disable-with="Create Room">
+        </div>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>
