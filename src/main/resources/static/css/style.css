@@ -32,11 +32,13 @@ display: flex;
 .header-button {
   margin-top: 40px;
 }
-.header-button a{
+.header-button input[type="submit"]{
   text-decoration: none;
   color: darkred;
   border: 1px solid darkred;
   padding: 20px;
+  background-color: #fff;
+  cursor: pointer;
 }
 
 .messages{
