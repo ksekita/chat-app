@@ -9,4 +9,5 @@ public class RoomEntity {
   private Integer id;
   private String name;
   private List<RoomUserEntity> roomUsers;
+  private List<MessageEntity> Messages;
 }
