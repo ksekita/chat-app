@@ -8,7 +8,6 @@
     <div class="left-header">
       <div class="header-title" th:text="${room.name}">ルーム名</div>
       </div>
-    </div>
     <div class="right-header">
       <div class="header-button">
         <a href="#">チャットを終了する</a>
@@ -16,11 +15,11 @@
     </div>
   </div>
   
-    <div class="message">
+    <div class="messages">
       <div th:each="message : ${messages}" class="message">
       <div class="upper-message">
         <div class="message-user" th:text="${message.user.name}">ユーザー名</div>
-        <div class="message-date" th:text="${message.createdAt}">日付</div>
+        <div class="message-date" th:text="${#dates.format(message.createdAt, 'yyyy/MM/dd HH:mm:ss')}">日付</div>
       </div>
       <div class="lower-message">
         <div class="message-content" th:text="${message.content}">メッセージ内容</div>
