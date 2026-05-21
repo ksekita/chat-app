@@ -26,15 +26,18 @@
       <div class="lower-message">
         <div class="message-content" th:text="${message.content}">メッセージ内容</div>
       </div>
+      <div th:if="${message.image}">
+        <img th:src="@{${message.image}}" alt="メッセージ画像" style="width: 500px; height: 500;"/>
+      </div>
     </div>
   </div>
   
-  <form th:action="@{/rooms/{roomId}/messages(roomId=${room.Id})}" method="post" th:object="${messageForm}" class="form">
+  <form th:action="@{/rooms/{roomId}/messages(roomId=${room.Id})}" method="post" th:object="${messageForm}" class="form" enctype="multipart/form-data">
     <div class="form-input">
       <input th:field="*{content}" class="form-message" placeholder="type a message">
       <label class="form-image">
         <span class="image-file">画像</span>
-        <input type="file" class="hidden">
+        <input type="file" th:field="*{image}" class="hidden">
       </label>
     </div>
     <input class="form-submit" type="submit" value="送信">
