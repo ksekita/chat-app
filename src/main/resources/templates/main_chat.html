@@ -6,8 +6,7 @@
 
   <div class="chat-header">
     <div class="left-header">
-      <div class="header-title">
-        hogefuga
+      <div class="header-title" th:text="${room.name}">ルーム名</div>
       </div>
     </div>
     <div class="right-header">
@@ -17,23 +16,6 @@
     </div>
   </div>
   
-  <div class="messages">
-    <div class="message">
-      <div class="upper-message">
-        <div class="message-user">
-          Tom
-        </div>
-        <div class="message-date">
-          2020/3/31(wed) 12:43:30
-        </div>
-      </div>
-      <div class="lower-message">
-        <div class="message-content">
-          おはよう
-        </div>
-      </div>
-    </div>
-
     <div class="message">
       <div th:each="message : ${messages}" class="message">
       <div class="upper-message">
@@ -46,7 +28,7 @@
     </div>
   </div>
   
-  <form th:action="@{/rooms/{roomId}/messages(roomId=${roomId})}" method="post" th:object="${messageForm}" class="form">
+  <form th:action="@{/rooms/{roomId}/messages(roomId=${room.Id})}" method="post" th:object="${messageForm}" class="form">
     <div class="form-input">
       <input th:field="*{content}" class="form-message" placeholder="type a message">
       <label class="form-image">
