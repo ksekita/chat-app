@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +23,7 @@ import in.tech_camp.chat_app.repository.MessageRepository;
 import in.tech_camp.chat_app.repository.RoomRepository;
 import in.tech_camp.chat_app.repository.RoomUserRepository;
 import in.tech_camp.chat_app.repository.UserRepository;
+import in.tech_camp.chat_app.validation.ValidationOrder;
 import lombok.AllArgsConstructor;
 
 @Controller
@@ -56,7 +59,12 @@ public class MessageController {
   }
 
    @PostMapping("/rooms/{roomId}/messages")
-  public String saveMessage(@PathVariable("roomId") Integer roomId, @ModelAttribute("messageForm") MessageForm messageForm, @AuthenticationPrincipal CustomUserDetail currentUser) {
+  public String saveMessage(@PathVariable("roomId") Integer roomId, @ModelAttribute("messageForm") @Validated(ValidationOrder.class) MessageForm messageForm,BindingResult bindingResult, @AuthenticationPrincipal CustomUserDetail currentUser) {
+    if(bindingResult.hasErrors()){
+      return "redirect:/rooms/" + roomId + "/messages";
+    }
+    
+    
     MessageEntity message = new MessageEntity();
     message.setContent(messageForm.getContent());
 
