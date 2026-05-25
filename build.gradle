@@ -40,6 +40,7 @@ dependencies {
 	testImplementation 'com.h2database:h2'
 	implementation 'org.yaml:snakeyaml:1.29'
 	implementation 'com.github.javafaker:javafaker:1.0.2'
+	testImplementation 'org.jsoup:jsoup:1.15.3'
 }
 
 tasks.named('test') {
